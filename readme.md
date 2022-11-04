@@ -1,8 +1,7 @@
 
 # Work Report
 
-## Name: 
-<br></br>
+## Devs: 
 <ins> Robin Lee Simpson  </ins>
 <br></br>
 <ins> Shizuka </ins>
