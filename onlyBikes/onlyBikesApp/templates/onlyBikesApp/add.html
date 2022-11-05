@@ -1,0 +1,25 @@
+<h1>Add a bike</h1>
+
+<form action="addbike/" method="post">
+{% csrf_token %}
+Brand:<br>
+<input name="brand">
+<br><br>
+Model:<br>
+<input name="model">
+<br><br>
+Price:<br>
+<input name="price">
+<br><br>
+Condition:<br>
+<input name="condition">
+<br><br>
+Location:<br>
+<input name="location">
+<br><br>
+Description:<br>
+<input name="description">
+<br><br>
+
+<input type="submit" value="Submit">
+</form>
