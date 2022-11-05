@@ -13,6 +13,8 @@ from twilio.rest import Client
 
 ###############################################################################################
 
+# Auth0 Section
+
 oauth = OAuth()
 
 oauth.register(
@@ -70,6 +72,8 @@ def testmessage():
     print(message.sid)
 
 ############################################################################################### 
+
+# Everything Else
 
 def index(request):
     return
