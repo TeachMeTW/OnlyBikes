@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'onlyBikesApp'
-    'onlyBikesApp.apps.OnlybikesappConfig'
+    # 'onlyBikesApp.apps.OnlybikesappConfig'
 ]
 
 MIDDLEWARE = [

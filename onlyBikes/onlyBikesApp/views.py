@@ -9,6 +9,7 @@ def index(request):
     for b in bikes:
         var = f'<li> ({b.get_condition_display()}) {b.brand_name} {b.model_name} only: ${b.price}!! </li><br>'
         html = html + var
-    return HttpResponse(html, status = 200)
+    return render(request, 'index.html')
+    # return HttpResponse(html, status = 200)
 
 
