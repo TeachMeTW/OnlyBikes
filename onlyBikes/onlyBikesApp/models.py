@@ -3,9 +3,10 @@ from django.db import models
 # Create your models here.
 class BikeModel(models.Model):
     
+    location = models.CharField(max_length = 200)
     price = models.IntegerField()
-    model_name = models.CharField(max_length = 200)
-    brand_name = models.CharField(max_length = 100)
+    model = models.CharField(max_length = 200)
+    brand = models.CharField(max_length = 100)
     description = models.CharField(max_length = 500)
     
     COND = (

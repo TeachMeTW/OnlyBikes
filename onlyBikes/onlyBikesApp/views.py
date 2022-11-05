@@ -1,12 +1,31 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import BikeModel
+from django.template import loader
+from django.urls import reverse
 
 def index(request):
     bikes = BikeModel.objects.all()
     
-    html = ''
-    for b in bikes:
-        var = f'<li> ({b.get_condition_display()}) {b.brand_name} {b.model_name} only: ${b.price}!! </li><br>'
-        html = html + var
-    return HttpResponse(html, status = 200)
+    template = loader.get_template('onlyBikesApp/test_view.html')
+    context = {
+        'bikes' : bikes,
+    }
+    return HttpResponse(template.render(context, request), status = 200)
+
+def add(request):
+    template = loader.get_template('onlyBikesApp/add.html')
+    return HttpResponse(template.render({}, request))
+
+def addbike(request):
+    brand = request.POST['brand']
+    model = request.POST['model']
+    price = request.POST['price']
+    condition = request.POST['condition']
+    location = request.POST['location']
+    description = request.POST['description']
+    
+    bike = BikeModel.objects.create(brand = brand, model = model,price = price,condition = condition,location = location,description = description)
+    bike.save()
+
+    return HttpResponseRedirect(reverse('test_view'))
