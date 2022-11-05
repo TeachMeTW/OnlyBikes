@@ -28,8 +28,6 @@ class User(AbstractUser):
     bio = models.CharField(max_length=1000)
     bikes = models.ManyToManyField(BikeModel)
     phone_number = models.CharField(max_length=10)
-
-    REQUIRED_FIELDS = ['email', 'password']
     pass
     
 

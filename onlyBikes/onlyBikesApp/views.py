@@ -10,6 +10,8 @@ from django.shortcuts import redirect, render, redirect
 from django.urls import reverse
 from urllib.parse import quote_plus, urlencode
 from twilio.rest import Client
+from django.contrib.auth import logout as django_logout
+from django.contrib.auth.decorators import login_required 
 
 ###############################################################################################
 
@@ -93,3 +95,22 @@ def addbike(request):
     bike.save()
 
     return HttpResponseRedirect(reverse('test_view'))
+
+    # return HttpResponse(html, status = 200)
+
+def home(request):
+    return render(request, 'home.html')
+
+def temp(request):
+    return render(request, 'temp.html')
+
+def show(request):
+    return render(request, 'show.html')
+
+@login_required
+def logout(request):
+    django_logout(request)
+    domain = settings.SOCIAL_AUTH_AUTH0_DOMAIN
+    client_id = settings.SOCIAL_AUTH_AUTH0_KEY
+    return_to = 'http://127.0.0.1:8000' # this can be current domain
+    return redirect(f'https://{domain}/v2/logout?client_id={client_id}&returnTo={return_to}')

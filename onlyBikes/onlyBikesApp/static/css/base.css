@@ -1,0 +1,64 @@
+body {
+    color: #777;
+    font-family: 'Helvetica', sans-serif;
+}
+
+p {
+    line-height: 1rem;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    color: #444;
+    font-size: 3rem;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+h1:last-child {
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-weight: 300;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+h4 {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+h5 {
+    font-size: 0.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+h1 h2 h3 h4 h5 {
+    color: #444;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* a:hover {
+    color: #02b8dd;
+} */
+
+.clear {
+    clear: both;
+}
