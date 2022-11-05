@@ -12,4 +12,11 @@ def index(request):
     return render(request, 'index.html')
     # return HttpResponse(html, status = 200)
 
+def home(request):
+    return render(request, 'home.html')
 
+def temp(request):
+    return render(request, 'temp.html')
+
+def show(request):
+    return render(request, 'show.html')

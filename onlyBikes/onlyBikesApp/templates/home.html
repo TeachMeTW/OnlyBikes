@@ -1,0 +1,77 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static 'css/home.css'%}">
+{% endblock  %}
+
+{% block body %}
+
+    <div class="hero-image">
+        <div class="hero-image-top">
+            <div class="hero-image-text">
+                <div>
+                    <span>Rent, ride, and compete</span>
+                </div>
+                <div><span>to save the environment.</span></div>
+                <div >
+                    <button class="btn btn-dark">Start Here</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>     
+
+    <div class="features">
+        <ul>
+            <li id="feature-1">
+                <img src="{% static '/img/magnify_glass.jpg' %}" alt="">
+                <h4>Easy to Search</h4>
+                <p>Find local bikes to rent for personal or professional use. Bikes come in new or used conditions. Rate bikes to help infom yourself and others of a bikes condition.</p>
+            </li>
+            <li id="feature-2">
+                <img src="{% static '/img/pay.jpg' %}" alt="">
+                <h4>Pay as you go</h4>
+                <p>Rent out for up to 7 days. A fixed rate per hour is applied to your bill at the end of the session. Please see terms and conditions for more information.</p>
+            </li>
+            <li id="feature-3">
+                <img src="{% static '/img/heart.jpg' %}" alt="">
+                <h4>Share for Discounts</h4>
+                <p>For every 5 friends that sign up with your code, receive discounts and coupons to local healthy resturants</p>
+            </li>
+            <div class="clear"></div>
+        </ul>
+    </div>
+
+    <div class="container primary-content">
+        <article>
+            {% comment %} <img src="{% static '/img/lonely_bike.jpg' %}" alt=""> {% endcomment %}
+            <h3>Save the lonely bikes!</h3>
+            <p>To aid the environment, we created a system for scanning stranded bikes without owners. Take pictures of this bikes of these bikes to gain rewards and compete with your friends or public.</p>
+        </article>
+    </div>
+
+    <div class="container secondary-content">
+        <div class="row">
+            <div class="col-6">
+                <article>
+                    <h4>Upcoming Update!</h4>
+                    <p>We are planning to add functionality to create bike routes that you can share and rate. Click here for more info.</p>
+                </article>
+            </div>
+            <div class="col-6">
+                <article>
+                    <h4>Event: Bike-athon</h4>
+                    <p>We will be hosting a biking marathon in San Fransisco, CA. Distances cover 5k, 10k, and 26k. Come out to exercise and bbq!</p>
+                </article>
+            </div>
+        </div>        
+    </div>
+
+    <div class="container call-to-action">
+        <h3>Let's get you started!</h3>
+        <p>Signing up only takes a 2 minutes. Follow our tutorial to get you started and riding as soon as possible.</p>
+        <button class="btn btn-outline btn-outline-dark">Sign Up</button>
+    </div>
+
+{% endblock  %}

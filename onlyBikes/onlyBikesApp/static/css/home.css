@@ -1,0 +1,90 @@
+.hero-image span {
+    font-weight: bold;
+}
+
+.hero-image {
+
+    height: 36rem;
+    min-width: 100%;
+    
+    padding-top: 1rem;
+    margin-top: 2rem;
+    
+    background: #e8eced url('/static/img/home_pic.jpg') no-repeat center;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-image-top {
+
+    width: 90%;
+
+    font-size: 2rem;
+    color: #ededed;
+    text-shadow: 3px 3px 3px black;
+
+    margin: 12rem 0 2.5rem 0;
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+}
+
+.hero-image div {
+    display: flex;
+    justify-content: center;
+}
+
+
+.hero-image-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.features {
+    margin: 80px 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.features ul li {
+    width: 300px;
+    float: left;
+    margin-right: 10px;
+    text-align: center;
+    list-style: none;
+}
+
+#feature-1 img, #feature-2 img, #feature-3 img {
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 1rem;
+}
+
+.primary-content {
+    background-color: #f8fafa;
+    padding: 4rem;
+    text-align: center;
+    background: url('/img/lonely_bike.jpg') no-repeat center;
+
+}
+
+.primary-content h3 {
+    display: block;
+    margin: 0 auto 2rem auto;
+    width: 25rem;
+    border-bottom: 1px solid #02b8dd;
+    padding: 0 0 2rem 0;
+}
+
+.primary-content img {
+    margin: 2rem 0;
+}
