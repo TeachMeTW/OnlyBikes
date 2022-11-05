@@ -18,5 +18,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path('', include('onlyBikesApp.urls')),
+    path('', include('social_django.urls')),
     path('admin/', admin.site.urls),
 ] 

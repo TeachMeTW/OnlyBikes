@@ -19,12 +19,12 @@ oauth = OAuth()
 
 oauth.register(
     "auth0",
-    client_id=settings.AUTH0_CLIENT_ID,
-    client_secret=settings.AUTH0_CLIENT_SECRET,
+    client_id=settings.SOCIAL_AUTH_AUTH0_KEY,
+    client_secret=settings.SOCIAL_AUTH_AUTH0_SECRET,
     client_kwargs={
         "scope": "openid profile email",
     },
-    server_metadata_url=f"https://{settings.AUTH0_DOMAIN}/.well-known/openid-configuration",
+    server_metadata_url=f"https://{settings.SOCIAL_AUTH_AUTH0_DOMAIN}/.well-known/openid-configuration",
 )
 
 def login(request):
@@ -37,17 +37,16 @@ def callback(request):
     request.session["user"] = token
     return redirect(request.build_absolute_uri(reverse("index")))
 
-# 👆 We're continuing from the steps above. Append this to your webappexample/views.py file.
 
 def logout(request):
     request.session.clear()
 
     return redirect(
-        f"https://{settings.AUTH0_DOMAIN}/v2/logout?"
+        f"https://{settings.SOCIAL_AUTH_AUTH0_DOMAIN}/v2/logout?"
         + urlencode(
             {
                 "returnTo": request.build_absolute_uri(reverse("index")),
-                "client_id": settings.AUTH0_CLIENT_ID,
+                "client_id": settings.SOCIAL_AUTH_AUTH0_KEY,
             },
             quote_via=quote_plus,
         ),

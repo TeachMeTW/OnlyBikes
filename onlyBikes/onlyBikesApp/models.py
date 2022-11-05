@@ -1,13 +1,18 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class BikeModel(models.Model):
     
+    image = models.ImageField(upload_to='onlyBikesApp/bikes')
     location = models.CharField(max_length = 200)
     price = models.IntegerField()
     model = models.CharField(max_length = 200)
     brand = models.CharField(max_length = 100)
     description = models.CharField(max_length = 500)
+    startRental = models.DateTimeField(default='2002-06-05')
+    endRental = models.DateTimeField(default='2002-06-05')
+    beingRented = models.BooleanField(default = False)
     
     
     COND = (
@@ -17,14 +22,18 @@ class BikeModel(models.Model):
     )
     condition = models.CharField(max_length = 2, choices = COND)
 
-class User(models.Model):
-    username = models.CharField(max_length = 200)
-    email = models.EmailField(max_length = 200)
-    password = models.CharField(max_length = 200)
-    bike_model = models.ManyToManyField(BikeModel)
-    startRental = models.DateTimeField()
-    endRental = models.DateTimeField()
+class User(AbstractUser):
+    
+    profile_image = models.ImageField(upload_to='onlyBikesApp/userprofile')
+    bio = models.CharField(max_length=1000)
+    bikes = models.ManyToManyField(BikeModel)
+    phone_number = models.CharField(max_length=10)
 
+    REQUIRED_FIELDS = ['email', 'password']
+    pass
+    
+
+    
 
 
 
