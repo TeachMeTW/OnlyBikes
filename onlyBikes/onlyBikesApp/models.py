@@ -30,7 +30,7 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=10)
     pass
     
-
+    
     
 
 
