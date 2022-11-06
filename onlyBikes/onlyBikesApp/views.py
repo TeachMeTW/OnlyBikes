@@ -12,6 +12,7 @@ from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required 
 from . models import User
 from .utils.utils import test_data
+from os import environ
 ###############################################################################################
 
 
@@ -70,8 +71,10 @@ def testmessage():
 # Everything Else
 
 def index(request):
-    all_bikes = BikeModel.objects.all()
 
+    all_bikes = BikeModel.objects.all()
+    
+    # Note: Remove this in production
     if len(all_bikes) < 7:
         all_bikes = test_data()
         for bike in all_bikes: 
@@ -94,6 +97,9 @@ def show(request, id):
 
 def contact(request):
     return render(request, 'contact.html')
+
+def leaderboard(request):
+    return render(request, 'leaderboard.html', {"mapbox_token" : environ["MAPBOX_TOKEN"]})
 
 # -- Utility Functions --
 
@@ -129,13 +135,13 @@ def update_profile(request):
     phone = request.POST['phone']
     bio = request.POST['bio']
     user = User.objects.get(username = username)
-    print(request.POST)
+    # print(request.POST)
     user.first_name = first
-    print(user.last_name, last)
+    # print(user.last_name, last)
     user.last_name = last
     user.email = email
     user.phone_number = phone
-    print(user.bio, bio)
+    # print(user.bio, bio)
     user.bio = bio
     user.save()
     return HttpResponseRedirect(reverse('profile'))
