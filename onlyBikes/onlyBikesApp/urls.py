@@ -13,7 +13,6 @@ urlpatterns = [
     path('profile/update_profile/', views.update_profile,name ='update_profile'),
     path('cam/',views.cam, name='cam'),
     path('leaderboard/', views.leaderboard, name ='leaderboard'),
-    path('detect/', views.detect_bike, name='detect_bike'),
 ]
 
 if settings.DEBUG:

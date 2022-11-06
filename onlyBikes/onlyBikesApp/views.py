@@ -27,7 +27,6 @@ import matplotlib
 from django.views.decorators import gzip
 from django.http import StreamingHttpResponse
 import threading
-from . forms import UserForm, BikeForm
 ###############################################################################################
 
 
@@ -155,16 +154,20 @@ def profile(request):
 @login_required
 def update_profile(request):
     username = request.user
-    form=UserForm(request.POST, request.FILES)
-    # form.clean()
-    prof = form.save(commit=False)
+    first = request.POST['first']
+    last = request.POST['last']
+    email = request.POST['email']
+    phone = request.POST['phone']
+    bio = request.POST['bio']
     user = User.objects.get(username = username)
-    user.first_name = prof.first_name
-    user.last_name = prof.last_name
-    user.phone_number = prof.phone_number
-    user.bio = prof.bio
-    user.email = prof.email
-    user.profile_image = prof.profile_image
+    # print(request.POST)
+    user.first_name = first
+    # print(user.last_name, last)
+    user.last_name = last
+    user.email = email
+    user.phone_number = phone
+    # print(user.bio, bio)
+    user.bio = bio
     user.save()
     return HttpResponseRedirect(reverse('profile'))
 
@@ -218,109 +221,6 @@ def detect_fn(image):
 
 category_index = label_map_util.create_category_index_from_labelmap(files['LABELMAP'])
 IMAGE_PATH = os.path.join(paths['IMAGE_PATH'], 'test', 'unknown.png')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def detect_bike(request):
-    if request.method == 'POST':
-        form=BikeForm(request.POST, request.FILES)
-        
-        prof = form.save()
-        pic = (str(prof.image_dir))
-        IMAGE_PATH = os.path.join(paths['IMAGE_PATH'], pic)
-        img = cv2.imread(IMAGE_PATH)
-        image_np = np.array(img)
-
-        input_tensor = tf.convert_to_tensor(np.expand_dims(image_np, 0), dtype=tf.float32)
-        detections = detect_fn(input_tensor)
-
-        num_detections = int(detections.pop('num_detections'))
-        detections = {key: value[0, :num_detections].numpy()
-                    for key, value in detections.items()}
-        detections['num_detections'] = num_detections
-
-        # detection_classes should be ints.
-        detections['detection_classes'] = detections['detection_classes'].astype(np.int64)
-
-        label_id_offset = 1
-        image_np_with_detections = image_np.copy()
-
-        img = cv2.imread(IMAGE_PATH)
-        image_np = np.array(img)
-
-        input_tensor = tf.convert_to_tensor(np.expand_dims(image_np, 0), dtype=tf.float32)
-        detections = detect_fn(input_tensor)
-
-        num_detections = int(detections.pop('num_detections'))
-        detections = {key: value[0, :num_detections].numpy()
-                    for key, value in detections.items()}
-        detections['num_detections'] = num_detections
-
-        # detection_classes should be ints.
-        detections['detection_classes'] = detections['detection_classes'].astype(np.int64)
-
-        label_id_offset = 1
-        image_np_with_detections = image_np.copy()
-
-        viz_utils.visualize_boxes_and_labels_on_image_array(
-                    image_np_with_detections,
-                    detections['detection_boxes'],
-                    detections['detection_classes']+label_id_offset,
-                    detections['detection_scores'],
-                    category_index,
-                    use_normalized_coordinates=True,
-                    max_boxes_to_draw=5,
-                    min_score_thresh=.8,
-                    agnostic_mode=False)
-
-       
-        b = plt.imsave('media/dab.jpg',cv2.cvtColor(image_np_with_detections, cv2.COLOR_BGR2RGB))
-        #k = plt.savefig('bruh.png')
-        
-        return render(request, 'found.html', {'image':'/media/dab.jpg'})
-    
-    return render(request, 'found.html')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @gzip.gzip_page
@@ -377,14 +277,41 @@ class VideoCamera(object):
                     agnostic_mode=False)
 
         ret, jpeg = cv2.imencode('.jpg', image_np_with_detections)
-        
         return jpeg.tobytes()
 
     def update(self):
         while True:
             cap = self.video
             (self.grabbed, self.frame) = cap.read()
-           
+            ret, frame = cap.read()
+            image_np = np.array(frame)
+            
+            input_tensor = tf.convert_to_tensor(np.expand_dims(image_np, 0), dtype=tf.float32)
+            detections = detect_fn(input_tensor)
+            
+            num_detections = int(detections.pop('num_detections'))
+            detections = {key: value[0, :num_detections].numpy()
+                        for key, value in detections.items()}
+            detections['num_detections'] = num_detections
+
+            # detection_classes should be ints.
+            detections['detection_classes'] = detections['detection_classes'].astype(np.int64)
+
+            label_id_offset = 1
+            image_np_with_detections = image_np.copy()
+
+            viz_utils.visualize_boxes_and_labels_on_image_array(
+                        image_np_with_detections,
+                        detections['detection_boxes'],
+                        detections['detection_classes']+label_id_offset,
+                        detections['detection_scores'],
+                        category_index,
+                        use_normalized_coordinates=True,
+                        max_boxes_to_draw=5,
+                        min_score_thresh=0.35,
+                        agnostic_mode=False)
+
+            # cv2.imshow('object detection',  cv2.resize(image_np_with_detections, (800, 600)))
             
 
 
