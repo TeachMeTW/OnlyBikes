@@ -76,7 +76,8 @@ def testmessage():
 # Everything Else
 
 def index(request):
-    return
+    return "Index route: Fix me!"
+    # return render(request, 'home.html')
 
 def add(request):
     template = loader.get_template('onlyBikesApp/add.html')
@@ -105,7 +106,7 @@ def temp(request):
 
 def show(request):
     return render(request, 'show.html')
-    bike = BikeModel.objects.create(brand = brand, model = model,price = price,condition = condition,location = location,description = description)
-    bike.save()
+    # bike = BikeModel.objects.create(brand = brand, model = model,price = price,condition = condition,location = location,description = description)
+    # bike.save()
 
-    return HttpResponseRedirect(reverse('test_view'))
+    # return HttpResponseRedirect(reverse('test_view'))

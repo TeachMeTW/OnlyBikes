@@ -1,3 +1,8 @@
 nav {
     display: flex;
 }
+
+#logo {
+    max-height: 5rem;
+    max-width: 5rem;
+}
