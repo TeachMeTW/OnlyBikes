@@ -8,5 +8,4 @@ urlpatterns = [
     path('show/', views.show, name='show'),
     path('logout/', views.logout, name ='logout'),
     path('profile/', views.profile, name ='profile'),
-    # REMOVE THIS
 ]
