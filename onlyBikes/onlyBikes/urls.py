@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('', include('onlyBikesApp.urls')),
-    path('', include('social_django.urls')),
+    path('onlyBikesApp/', include('onlyBikesApp.urls')),
     path('admin/', admin.site.urls),
 ] 
