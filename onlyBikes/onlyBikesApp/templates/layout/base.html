@@ -7,13 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>onlyBikes</title>
-    
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     
-    <link rel="stylesheet" href="{% static 'css/base.css'%}"> 
     <link rel="stylesheet" href="{% static 'css/navbar.css'%}"> 
+    <link rel="stylesheet" href="{% static 'css/base.css'%}"> 
     {% block header %}{% endblock  %}
 
 </head>
@@ -27,33 +26,6 @@
 
 </body>
 
-<footer class="container">
-    <div class="footer-info">
-        <p>Copyright 2020 onlyBikes.  All rights reserved.</p>
-        <p>
-            <a href="">Terms of Service</a>|<a href="">Privacy</a>
-        </p>
-    </div>
-    <div class="footer-links">
-        <ul>
-            <li><h5>General</h5></li>
-            <li>Sign Up</li>
-            <li>Help Center</li>
-            <li>Blog</li>
-        </ul>
-        <ul>
-            <li><h5>Company</h5></li>
-            <li>About Us</li>
-            <li>Meet the Team</li>
-            <li>Careers</li>
-        </ul>
-        <ul>
-            <li><h5>Privacy</h5></li>
-            <li>User Agreement</li>
-            <li>Cookie Policy</li>
-            <li>Community Guidelines</li>
-        </ul>
-    </div>
-</footer>
+    {% include 'partials/footer.html'%}
 
 </html>

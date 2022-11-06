@@ -22,7 +22,7 @@
         
     </div>     
 
-    <div class="features">
+    <div class="features mb-5">
         <ul>
             <li id="feature-1">
                 <img src="{% static '/img/magnify_glass.jpg' %}" alt="">
@@ -43,15 +43,19 @@
         </ul>
     </div>
 
-    <div class="container primary-content">
+    <div class="container primary-content mb-5">
         <article>
-            {% comment %} <img src="{% static '/img/lonely_bike.jpg' %}" alt=""> {% endcomment %}
-            <h3>Save the lonely bikes!</h3>
-            <p>To aid the environment, we created a system for scanning stranded bikes without owners. Take pictures of this bikes of these bikes to gain rewards and compete with your friends or public.</p>
+            <h3 class="mb-0">Save the lonely bikes!</h3>
+            <div class="primary-content-text">
+                <div>
+                    <p>To aid the environment, we created a system for scanning stranded bikes without owners. Take pictures of this bikes of these bikes to gain rewards and compete with your friends or public.</p>
+                </div>
+            </div>
+            <img src="{% static '/img/lonely_bike.jpg' %}" alt="">
         </article>
     </div>
 
-    <div class="container secondary-content">
+    {% comment %} <div class="container secondary-content">
         <div class="row">
             <div class="col-6">
                 <article>
@@ -66,9 +70,9 @@
                 </article>
             </div>
         </div>        
-    </div>
+    </div> {% endcomment %}
 
-    <div class="container call-to-action">
+    <div class="container call-to-action mb-5">
         <h3>Let's get you started!</h3>
         <p>Signing up only takes a 2 minutes. Follow our tutorial to get you started and riding as soon as possible.</p>
         <button class="btn btn-outline btn-outline-dark">Sign Up</button>

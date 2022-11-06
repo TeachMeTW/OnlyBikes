@@ -1,6 +1,7 @@
 body {
     color: #777;
-    font-family: 'Helvetica', sans-serif;
+    box-sizing: border-box;
+    /* font-family: 'Helvetica', sans-serif; */
 }
 
 p {
