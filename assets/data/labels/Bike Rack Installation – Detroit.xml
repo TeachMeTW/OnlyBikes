@@ -1,0 +1,26 @@
+<annotation>
+	<folder>parked bikes on sidewalk - Google Search</folder>
+	<filename>Bike Rack Installation – Detroit.jpg</filename>
+	<path>/Users/shiii266/Downloads/parked bikes on sidewalk - Google Search/Bike Rack Installation – Detroit.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1200</width>
+		<height>900</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bike</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>393</xmin>
+			<ymin>272</ymin>
+			<xmax>640</xmax>
+			<ymax>623</ymax>
+		</bndbox>
+	</object>
+</annotation>

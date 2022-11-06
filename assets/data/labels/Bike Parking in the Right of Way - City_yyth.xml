@@ -1,0 +1,26 @@
+<annotation>
+	<folder>parked bikes on sidewalk - Google Search</folder>
+	<filename>Bike Parking in the Right of Way - City_yyth.jpg</filename>
+	<path>/Users/shiii266/Downloads/parked bikes on sidewalk - Google Search/Bike Parking in the Right of Way - City_yyth.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1024</width>
+		<height>512</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bike</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>230</xmin>
+			<ymin>96</ymin>
+			<xmax>426</xmax>
+			<ymax>229</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>bike rental - Google Search</folder>
+	<filename>Bike Rental And Repair In Venice Florida.jpg</filename>
+	<path>/Users/shiii266/Documents/Developer/TigerHacks/TigerHacks2022/assets/data/images/bike rental - Google Search/Bike Rental And Repair In Venice Florida.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1024</width>
+		<height>800</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bike</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>90</xmin>
+			<ymin>11</ymin>
+			<xmax>942</xmax>
+			<ymax>782</ymax>
+		</bndbox>
+	</object>
+</annotation>

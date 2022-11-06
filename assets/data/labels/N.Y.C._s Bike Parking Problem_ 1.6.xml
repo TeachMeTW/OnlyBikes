@@ -1,0 +1,26 @@
+<annotation>
+	<folder>parked bikes on sidewalk - Google Search</folder>
+	<filename>N.Y.C._s Bike Parking Problem_ 1.6.jpg</filename>
+	<path>/Users/shiii266/Downloads/parked bikes on sidewalk - Google Search/N.Y.C._s Bike Parking Problem_ 1.6.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1800</width>
+		<height>1200</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bike</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>42</xmin>
+			<ymin>470</ymin>
+			<xmax>685</xmax>
+			<ymax>902</ymax>
+		</bndbox>
+	</object>
+</annotation>

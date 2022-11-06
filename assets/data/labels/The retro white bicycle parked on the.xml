@@ -1,0 +1,26 @@
+<annotation>
+	<folder>parked bikes on sidewalk - Google Search</folder>
+	<filename>The retro white bicycle parked on the.jpg</filename>
+	<path>/Users/shiii266/Downloads/parked bikes on sidewalk - Google Search/The retro white bicycle parked on the.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>2000</width>
+		<height>1333</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bike</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>637</xmin>
+			<ymin>346</ymin>
+			<xmax>1458</xmax>
+			<ymax>1244</ymax>
+		</bndbox>
+	</object>
+</annotation>
