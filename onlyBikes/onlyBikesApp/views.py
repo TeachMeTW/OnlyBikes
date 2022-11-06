@@ -86,7 +86,7 @@ def testmessage():
 # Everything Else
 
 def index(request):
-
+    BikeModel.objects.all().delete()
     all_bikes = BikeModel.objects.all()
     
     # Note: Remove this in production
@@ -94,6 +94,7 @@ def index(request):
         all_bikes = test_data()
         for bike in all_bikes: 
             bike.save()
+
 
     return render(request, "index.html", {"all_bikes" : all_bikes})
 
@@ -114,11 +115,16 @@ def contact(request):
     return render(request, 'contact.html')
 
 def leaderboard(request):
-    all_bikes = BikeModel.objects.filter(original_owner="rescued") 
-    print(all_bikes)
+    query_object = BikeModel.objects.all() 
+    rescued_loc = []
+    
+    if len(query_object) > 0:
+        for bike in query_object:
+            rescued_loc.append([bike.rescued_long, bike.rescued_lat])
+
     return render(request, 'leaderboard.html', {
         "mapbox_token" : environ["MAPBOX_TOKEN"],
-        "all_bikes" : all_bikes
+        "rescued_loc" : rescued_loc
         })
 
 # -- Utility Functions --

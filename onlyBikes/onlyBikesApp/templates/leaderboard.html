@@ -1,25 +1,42 @@
 {% extends 'layout/base.html' %}
-
+{% load static %}
 {% block header %}
 
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+<link rel="stylesheet" href="{% static 'css/leaderboard.css'%}">
 
 {% endblock  %}
 
 {% block body %}
 
 <div class="container">
-    <div class="col-6 my-5 ps-5">
-        <div id='map' style='width: 500px; height: 400px;'></div>
-    </div>
-    <div class="col-6 my-5 pe-5">
-
+    <div class="row">
+        <div class="col-5 offset-1 my-5 ps-5">
+            <div id='map' style='width: 500px; height: 400px;'></div>
+        </div>
+        <div class="col-6 my-5 pe-5 right-panel">
+            <div class="right-panel-inner">
+                <h3>Total Lost Bikes Found</h3>
+                <div style="color:#bc4749;" class="text-center">{{rescued_loc|length}}</div>
+            </div>
+        
+        </div>
     </div>
 </div>
 
 <script>
-    const mapboxToken = "{{mapboxToken}}"
-    const allBikes = {features : JSON.stringify({{all_bikes}})}  
+    const mapboxToken = "{{mapbox_token}}"
+    const rescuedLocStr = "{{rescued_loc | safe}}"
+    const rescuedLocParsed = JSON.parse(rescuedLocStr)
+    let allBikes = []
+    for (let i = 0; i < rescuedLocParsed.length; i++) {
+        let obj = {geometry : {
+            coordinates : rescuedLocParsed[i]
+        }}
+        allBikes.push(obj)
+    }
+    const rescuedLocJSON = {features : allBikes}
 </script>
+<script src="{% static 'js/leaderboard.js'%}"></script>
 {% endblock  %}
