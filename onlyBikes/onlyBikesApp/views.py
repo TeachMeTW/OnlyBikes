@@ -101,6 +101,9 @@ def temp(request):
 def show(request):
     return render(request, 'show.html')
 
+def contact(request):
+    return render(request, 'contact.html')
+
 @login_required
 def profile(request):
     return render(request, 'profile.html')
@@ -112,13 +115,15 @@ def update_profile(request):
     last = request.POST['last']
     email = request.POST['email']
     phone = request.POST['phone']
-    bio = last = request.POST['bio']
+    bio = request.POST['bio']
     user = User.objects.get(username = username)
-    print(first, last, email, phone)
+    print(request.POST)
     user.first_name = first
+    print(user.last_name, last)
     user.last_name = last
     user.email = email
     user.phone_number = phone
+    print(user.bio, bio)
     user.bio = bio
     user.save()
     return HttpResponseRedirect(reverse('profile'))

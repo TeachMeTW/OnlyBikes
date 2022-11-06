@@ -24,7 +24,7 @@ class BikeModel(models.Model):
 
 class User(AbstractUser):
     
-    profile_image = models.ImageField()
+    profile_image = models.ImageField(default ='/default.png')
     bio = models.CharField(max_length=1000)
     bikes = models.ManyToManyField(BikeModel, blank=True)
     phone_number = models.CharField(max_length=10)
