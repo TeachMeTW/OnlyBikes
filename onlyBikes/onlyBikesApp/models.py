@@ -22,7 +22,8 @@ class BikeModel(models.Model):
     beingRented = models.BooleanField(default = False)
     condition = models.CharField(max_length = 2, choices = COND)
     original_owner = models.CharField(max_length = 200, default="rescued")
-    location_rescued = models.CharField(max_length = 200, default="")
+    rescued_long = models.FloatField(default=0)
+    rescued_lat = models.FloatField(default=0)
 
 class User(AbstractUser):
     
