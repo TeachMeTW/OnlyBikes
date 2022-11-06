@@ -12,7 +12,9 @@ urlpatterns = [
     path('profile/', views.profile, name ='profile'),
     path('profile/update_profile/', views.update_profile,name ='update_profile'),
     path('cam/',views.cam, name='cam'),
+    path('detect/', views.detect_bike, name='detect_bike'),
     path('leaderboard/', views.leaderboard, name ='leaderboard'),
+    path('aboutUs/', views.about, name = 'about'),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,22 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static 'css/aboutus.css'%}">
+{% endblock  %}
+
+{% block body %}
+<div class = "about-section">
+    <div class = "inner-container">
+        <h1 class = "inner-container-h1">About Us</h1>
+        <p class = "text" >OnlyBikes strives for a sustainable future by encouraging people to rent lonely bikes yearning to be ridden. We firmly believe that making bike rentals more accessible, we will be able to further promote the use of bikes as a means of transportation. </p>
+        <ul class = "authors">
+            <li>Eric Pineda</li>
+            <li>Robin Lee Simpson</li>
+            <li>Shizuka Takao</li>
+        </ul>
+    </div>
+</div>
+
+{% endblock  %}
+

@@ -1,0 +1,40 @@
+
+.about-section {
+    /* background: url("/static/img/bicycle.jpg") no-repeat center; */
+    opacity: 0.9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8rem;
+}
+
+
+.inner-container {
+    width: 55%;
+    /* float: left; */
+    background-color: #fdfdfd;
+    opacity: 0.9;
+    padding: 2rem;
+}
+
+.inner-container-h1 {
+    margin-bottom: 1rem;
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.text {
+    font-size: 13px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #545454;
+    line-height: 50px;
+    margin-bottom: 1rem;
+}
+
+.authors {
+    list-style-type: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
