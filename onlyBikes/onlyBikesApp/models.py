@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class BikeModel(models.Model):
     
-    image = models.ImageField(upload_to='onlyBikesApp/bikes')
+    image = models.ImageField(upload_to='upload/')
     location = models.CharField(max_length = 200)
     price = models.IntegerField()
     model = models.CharField(max_length = 200)

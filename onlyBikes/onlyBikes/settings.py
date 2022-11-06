@@ -42,8 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'onlyBikesApp.apps.OnlybikesappConfig',
     'social_django'
+=======
+    'onlyBikesApp'
+    # 'onlyBikesApp.apps.OnlybikesappConfig'
+>>>>>>> f1c7066bd45dc647e404237a74b195738d388bcc
 ]
 
 MIDDLEWARE = [

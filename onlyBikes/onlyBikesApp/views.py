@@ -101,6 +101,24 @@ def temp(request):
 def show(request):
     return render(request, 'show.html')
 
+@login_required
 def profile(request):
-    image = request.user.profile_image
-    return render(request, 'profile.html', {'profile_image': image})
+    return render(request, 'profile.html')
+
+@login_required
+def update_profile(request):
+    username = request.user
+    first = request.POST['first']
+    last = request.POST['last']
+    email = request.POST['email']
+    phone = request.POST['phone']
+    bio = last = request.POST['bio']
+    user = User.objects.get(username = username)
+    print(first, last, email, phone)
+    user.first_name = first
+    user.last_name = last
+    user.email = email
+    user.phone_number = phone
+    user.bio = bio
+    user.save()
+    return HttpResponseRedirect(reverse('profile'))
