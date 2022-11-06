@@ -72,7 +72,7 @@ def testmessage():
 # Everything Else
 
 def index(request):
-    return
+    return render(request, "index.html")
 
 def add(request):
     template = loader.get_template('onlyBikesApp/add.html')

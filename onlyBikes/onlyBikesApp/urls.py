@@ -14,6 +14,7 @@ urlpatterns = [
     path('', views.home, name='home'),
 
     # REMOVE THIS
+
 ]
 
 if settings.DEBUG:
