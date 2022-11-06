@@ -1,0 +1,26 @@
+<annotation>
+	<folder>parked bikes on sidewalk - Google Search</folder>
+	<filename>Choosing Bike Racks — Bike Provincetown.jpg</filename>
+	<path>/Users/shiii266/Downloads/parked bikes on sidewalk - Google Search/Choosing Bike Racks — Bike Provincetown.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>2500</width>
+		<height>2500</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bike</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1008</xmin>
+			<ymin>1111</ymin>
+			<xmax>1829</xmax>
+			<ymax>1942</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>bike rental - Google Search</folder>
+	<filename>Bike Rental Repair &amp; Retail.jpg</filename>
+	<path>/Users/shiii266/Documents/Developer/TigerHacks/TigerHacks2022/assets/data/images/bike rental - Google Search/Bike Rental Repair &amp; Retail.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1440</width>
+		<height>1143</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bike</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>543</xmin>
+			<ymin>585</ymin>
+			<xmax>1313</xmax>
+			<ymax>1036</ymax>
+		</bndbox>
+	</object>
+</annotation>

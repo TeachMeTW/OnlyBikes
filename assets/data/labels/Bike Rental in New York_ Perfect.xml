@@ -1,0 +1,26 @@
+<annotation>
+	<folder>bike rental - Google Search</folder>
+	<filename>Bike Rental in New York_ Perfect.jpg</filename>
+	<path>/Users/shiii266/Documents/Developer/TigerHacks/TigerHacks2022/assets/data/images/bike rental - Google Search/Bike Rental in New York_ Perfect.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1920</width>
+		<height>1080</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bike</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>800</xmin>
+			<ymin>416</ymin>
+			<xmax>1774</xmax>
+			<ymax>1066</ymax>
+		</bndbox>
+	</object>
+</annotation>

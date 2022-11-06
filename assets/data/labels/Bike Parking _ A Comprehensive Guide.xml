@@ -1,0 +1,26 @@
+<annotation>
+	<folder>parked bikes on sidewalk - Google Search</folder>
+	<filename>Bike Parking _ A Comprehensive Guide.png</filename>
+	<path>/Users/shiii266/Downloads/parked bikes on sidewalk - Google Search/Bike Parking _ A Comprehensive Guide.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>600</width>
+		<height>348</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bike</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>206</xmin>
+			<ymin>132</ymin>
+			<xmax>492</xmax>
+			<ymax>336</ymax>
+		</bndbox>
+	</object>
+</annotation>
