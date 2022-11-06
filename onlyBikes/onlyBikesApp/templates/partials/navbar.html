@@ -1,5 +1,8 @@
 {% load static %}
 
+<div>
+</div>
+
 <header class="container">
     <nav class="navbar navbar-expand-lg bg-light mt-3">
         <div class="container-fluid">
@@ -16,14 +19,23 @@
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/index">Bike Rentals</a>
+                    <a class="nav-link" aria-current="page" href="/index">Bike Rentals</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="#">About Us</a>
+                  </li>
+                  {% if not request.user.is_authenticated %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="/login/auth0">Register</a>
+                    </li>
+                  {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="/profile">Profile</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/login/auth0">Register</a>
+                    <a class="nav-link" href="/logout">Logout</a>
                   </li>
+                  {% endif %}
                 </ul>
               </div>
           </div>
