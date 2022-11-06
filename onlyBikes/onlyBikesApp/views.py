@@ -13,6 +13,7 @@ from twilio.rest import Client
 from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required 
 from . models import User
+from . forms import UserForm
 ###############################################################################################
 
 # Auth0 Section
@@ -111,19 +112,15 @@ def profile(request):
 @login_required
 def update_profile(request):
     username = request.user
-    first = request.POST['first']
-    last = request.POST['last']
-    email = request.POST['email']
-    phone = request.POST['phone']
-    bio = request.POST['bio']
+    form=UserForm(request.POST, request.FILES)
+    # form.clean()
+    prof = form.save(commit=False)
     user = User.objects.get(username = username)
-    print(request.POST)
-    user.first_name = first
-    print(user.last_name, last)
-    user.last_name = last
-    user.email = email
-    user.phone_number = phone
-    print(user.bio, bio)
-    user.bio = bio
+    user.first_name = prof.first_name
+    user.last_name = prof.last_name
+    user.phone_number = prof.phone_number
+    user.bio = prof.bio
+    user.email = prof.email
+    user.profile_image = prof.profile_image
     user.save()
     return HttpResponseRedirect(reverse('profile'))
