@@ -15,8 +15,8 @@
     <div class="infinite-scroll" data-mdb-infinite-direction="y" data-mdb-infinite-container="infinite-scroll-basic">
       <ul class="loading container list-group infinite-scroll infinite-scroll-basic" id="basic-example" style="max-height: 40rem; overflow-y: scroll">
 
-        {% for bike in bike_list %}
-              <a href="" class="text-dark" style="text-decoration: none;">
+        {% for bike in all_bikes %}
+              <a href="/show/{{bike.id}}" class="text-dark" style="text-decoration: none;">
                 <div class="card mb-3 p-3">
                   
                   <div class="row">

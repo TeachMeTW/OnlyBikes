@@ -11,7 +11,7 @@ from twilio.rest import Client
 from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required 
 from . models import User
-from .utils.utils import test_bikes
+from .utils.utils import test_data
 ###############################################################################################
 
 
@@ -70,20 +70,32 @@ def testmessage():
 # Everything Else
 
 def index(request):
-    bike_list = []
-    for bike_obj in test_bikes:
-        bike = BikeModel.objects.create(
-            brand = bike_obj["brand"], 
-            model = bike_obj["model"], 
-            price = bike_obj["price"], 
-            condition = bike_obj["condition"], 
-            location = bike_obj["location"], 
-            description = bike_obj["description"],
-            image_url = bike_obj["image"],
-            original_owner = bike_obj["user"]
-            )
-        bike_list.append(bike)
-    return render(request, "index.html", {"bike_list" : bike_list})
+    all_bikes = BikeModel.objects.all()
+
+    if len(all_bikes) < 7:
+        all_bikes = test_data()
+        for bike in all_bikes: 
+            bike.save()
+
+    return render(request, "index.html", {"all_bikes" : all_bikes})
+
+def home(request):
+    return render(request, 'home.html')
+
+def temp(request):
+    return render(request, 'temp.html')
+
+def show(request, id):
+    bike = BikeModel.objects.filter(id=id)
+
+    if len(bike) == 0:
+        return redirect('/index')
+    return render(request, 'show.html', {"bike" : bike[0]})
+
+def contact(request):
+    return render(request, 'contact.html')
+
+# -- Utility Functions --
 
 def add(request):
     template = loader.get_template('onlyBikesApp/add.html')
@@ -103,18 +115,6 @@ def addbike(request):
     return HttpResponseRedirect(reverse('test_view'))
 
     # return HttpResponse(html, status = 200)
-
-def home(request):
-    return render(request, 'home.html')
-
-def temp(request):
-    return render(request, 'temp.html')
-
-def show(request):
-    return render(request, 'show.html')
-
-def contact(request):
-    return render(request, 'contact.html')
 
 @login_required
 def profile(request):

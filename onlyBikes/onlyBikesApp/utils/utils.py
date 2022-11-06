@@ -1,3 +1,5 @@
+from ..models import BikeModel
+
 test_bikes = [{
     "user" : "Sally May", 
     "brand" : "Co-op Cycles",
@@ -63,3 +65,21 @@ test_bikes = [{
     "description" : "With high-quality brakes and pedal assist, the XP Step-Thru 2.0 is ideal for commuting and everyday riding. While some folding bikes feel unstable because of their small tires, the long wheel base of this model adds stability and finesse to your ride.",
 },
 ]
+
+def test_data():
+    bike_list = []
+    for bike_obj in test_bikes:
+        bike = BikeModel(
+            brand = bike_obj["brand"], 
+            model = bike_obj["model"], 
+            price = bike_obj["price"], 
+            condition = bike_obj["condition"], 
+            location = bike_obj["location"], 
+            description = bike_obj["description"],
+            image_url = bike_obj["image"],
+            original_owner = bike_obj["user"]
+            )
+        # bike.save()
+        bike_list.append(bike)
+
+    return bike_list

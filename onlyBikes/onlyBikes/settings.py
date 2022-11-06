@@ -32,7 +32,8 @@ AUTH_USER_MODEL = 'onlyBikesApp.User'
 # Application definition
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'onlyBikesApp/static')
 ]
 
 INSTALLED_APPS = [
