@@ -8,7 +8,7 @@
     min-width: 100%;
     
     padding-top: 1rem;
-    margin-top: 2rem;
+    margin-top: 3rem;
     
     background: url('/static/img/home_pic.jpg') no-repeat center;
 
@@ -18,7 +18,7 @@
 
 .hero-image-top {
 
-    width: 90%;
+    max-width: 78%;
 
     font-size: 2rem;
     color: #ededed;
