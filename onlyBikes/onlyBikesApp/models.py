@@ -1,6 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+COND = (
+        ('N', 'New'),
+        ('LN', 'Like-New'),
+        ('U', 'Used'),
+    )
+
 # Create your models here.
 class BikeModel(models.Model):
     
@@ -14,14 +20,9 @@ class BikeModel(models.Model):
     startRental = models.DateTimeField(default='2002-06-05')
     endRental = models.DateTimeField(default='2002-06-05')
     beingRented = models.BooleanField(default = False)
-    original_owner = models.CharField(max_length = 200, default="rescued")
-    
-    COND = (
-        ('N', 'New'),
-        ('LN', 'Like-New'),
-        ('U', 'Used'),
-    )
     condition = models.CharField(max_length = 2, choices = COND)
+    original_owner = models.CharField(max_length = 200, default="rescued")
+    location_rescued = models.CharField(max_length = 200, default="")
 
 class User(AbstractUser):
     

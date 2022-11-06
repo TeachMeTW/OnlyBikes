@@ -99,7 +99,12 @@ def contact(request):
     return render(request, 'contact.html')
 
 def leaderboard(request):
-    return render(request, 'leaderboard.html', {"mapbox_token" : environ["MAPBOX_TOKEN"]})
+    all_bikes = BikeModel.objects.filter(original_owner="rescued") 
+    print(all_bikes)
+    return render(request, 'leaderboard.html', {
+        "mapbox_token" : environ["MAPBOX_TOKEN"],
+        "all_bikes" : all_bikes
+        })
 
 # -- Utility Functions --
 
