@@ -1,11 +1,46 @@
+{% extends 'layout/base.html' %}
 {% load static %}
 
 {% block header %}
     <link rel="stylesheet" href="{% static 'css/index.css'%}">
+  <!-- MDB -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
 {% endblock  %}
 
 {% block body %}
 
-    <h1>This is the index page</h1>
+<div class="container px-5 pt-4" style="background-color: white;">
+    <h1 class="text-center m-4">All Bike Rentals</h1>
+
+    <div class="infinite-scroll" data-mdb-infinite-direction="y" data-mdb-infinite-container="infinite-scroll-basic">
+      <ul class="loading container list-group infinite-scroll infinite-scroll-basic" id="basic-example" style="max-height: 40rem; overflow-y: scroll">
+
+        {% for bike in bike_list %}
+              <a href="" class="text-dark" style="text-decoration: none;">
+                <div class="card mb-3 p-3">
+                  
+                  <div class="row">
+
+                      <div class="col-md-3">
+                          <img src="{{ bike.image_url}}" class="img-fluid rounded-start" style="max-height: 16rem; max-width: 16rem;">
+                      </div>
+                          <div class="col-md-9">
+                              <div class="card-body">
+                              <div class="card-title" style="font-size:1.5rem;font-weight:bold;">{{bike.model}} {{bike.brand}}</div>
+                              <p class="card-text">{{bike.description|slice:":200"}}...</p>
+                              <p class="card-text lead-sm">Posted by: {{bike.original_owner}}</p>
+                              <p class="card-text"><small class="text-muted">Last updated 5min ago</small></p>
+                          </div>
+                      </div>
+                    
+                  </div>
+
+                </div>
+              </a>
+      
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
 
 {% endblock %}

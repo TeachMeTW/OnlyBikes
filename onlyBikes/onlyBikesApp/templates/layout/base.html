@@ -13,10 +13,11 @@
     
     <link rel="stylesheet" href="{% static 'css/navbar.css'%}"> 
     <link rel="stylesheet" href="{% static 'css/base.css'%}"> 
+
     {% block header %}{% endblock  %}
 
 </head>
-<body>
+<body class='d-flex flex-column vh-100'>
 
     {% include "partials/navbar.html" %}
 

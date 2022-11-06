@@ -4,7 +4,8 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class BikeModel(models.Model):
     
-    image = models.ImageField(upload_to='upload/')
+    # image = models.ImageField(upload_to='upload/')
+    image_url = models.CharField(max_length = 200, default="")
     location = models.CharField(max_length = 200)
     price = models.IntegerField()
     model = models.CharField(max_length = 200)
@@ -13,7 +14,7 @@ class BikeModel(models.Model):
     startRental = models.DateTimeField(default='2002-06-05')
     endRental = models.DateTimeField(default='2002-06-05')
     beingRented = models.BooleanField(default = False)
-    
+    original_owner = models.CharField(max_length = 200, default="rescued")
     
     COND = (
         ('N', 'New'),
