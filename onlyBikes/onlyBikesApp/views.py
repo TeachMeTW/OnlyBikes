@@ -13,8 +13,20 @@ from django.contrib.auth.decorators import login_required
 from . models import User
 from .utils.utils import test_data
 from os import environ
-from django.core import serializers
+import cv2 
+import numpy as np
+from matplotlib import pyplot as plt
+import os
+import tensorflow as tf
+from object_detection.utils import label_map_util
+from object_detection.utils import visualization_utils as viz_utils
+from object_detection.builders import model_builder
+from object_detection.utils import config_util
+import matplotlib
 
+from django.views.decorators import gzip
+from django.http import StreamingHttpResponse
+import threading
 ###############################################################################################
 
 
@@ -158,3 +170,155 @@ def update_profile(request):
     user.bio = bio
     user.save()
     return HttpResponseRedirect(reverse('profile'))
+
+
+
+
+
+
+
+
+
+
+#############################################################################################
+
+
+MODEL_NAME = 'ssd_mobilenet_fpn_lite'
+PRETRAINED_MODEL_NAME = 'ssd_mobilenet_v2_fpnlite_320x320_coco17_tpu-8'
+LABEL_MAP_NAME = 'label_map.pbtxt'
+
+paths = {
+    
+
+    'ANNOTATION_PATH': os.path.join('../annotation'),
+    'IMAGE_PATH': os.path.join('../onlyBikes', 'media'),
+    'MODEL_PATH': os.path.join('../tensormodel'),
+    'CHECKPOINT_PATH': os.path.join('../tensormodel',MODEL_NAME), 
+}
+
+
+files = {
+    'PIPELINE_CONFIG':os.path.join('../tensormodel', MODEL_NAME, 'pipeline.config'),
+    'LABELMAP': os.path.join(paths['ANNOTATION_PATH'], LABEL_MAP_NAME)
+}
+
+
+
+
+configs = config_util.get_configs_from_pipeline_file(files['PIPELINE_CONFIG'])
+detection_model = model_builder.build(model_config=configs['model'], is_training=False)
+
+# Restore checkpoint
+ckpt = tf.compat.v2.train.Checkpoint(model=detection_model)
+ckpt.restore(os.path.join(paths['CHECKPOINT_PATH'], 'ckpt-102')).expect_partial()
+
+@tf.function
+def detect_fn(image):
+    image, shapes = detection_model.preprocess(image)
+    prediction_dict = detection_model.predict(image, shapes)
+    detections = detection_model.postprocess(prediction_dict, shapes)
+    return detections
+
+category_index = label_map_util.create_category_index_from_labelmap(files['LABELMAP'])
+IMAGE_PATH = os.path.join(paths['IMAGE_PATH'], 'test', 'unknown.png')
+
+
+@gzip.gzip_page
+def cam(request):
+    try:
+        cam = VideoCamera()
+        return StreamingHttpResponse(gen(cam), content_type="multipart/x-mixed-replace;boundary=frame")
+    except:
+        pass
+    return render(request, 'cam.html')
+
+#to capture video class
+class VideoCamera(object):
+    def __init__(self):
+        self.video = cv2.VideoCapture(0)
+        (self.grabbed, self.frame) = self.video.read()
+        threading.Thread(target=self.update, args=()).start()
+            
+
+    def __del__(self):
+        self.video.release()
+
+    def get_frame(self):
+        image = self.frame
+        _, jpeg = cv2.imencode('.jpg', image)
+        cap = self.video
+        (self.grabbed, self.frame) = cap.read()
+        ret, frame = cap.read()
+        image_np = np.array(frame)
+        
+        input_tensor = tf.convert_to_tensor(np.expand_dims(image_np, 0), dtype=tf.float32)
+        detections = detect_fn(input_tensor)
+        
+        num_detections = int(detections.pop('num_detections'))
+        detections = {key: value[0, :num_detections].numpy()
+                    for key, value in detections.items()}
+        detections['num_detections'] = num_detections
+
+        # detection_classes should be ints.
+        detections['detection_classes'] = detections['detection_classes'].astype(np.int64)
+
+        label_id_offset = 1
+        image_np_with_detections = image_np.copy()
+
+        viz_utils.visualize_boxes_and_labels_on_image_array(
+                    image_np_with_detections,
+                    detections['detection_boxes'],
+                    detections['detection_classes']+label_id_offset,
+                    detections['detection_scores'],
+                    category_index,
+                    use_normalized_coordinates=True,
+                    max_boxes_to_draw=5,
+                    min_score_thresh=0.35,
+                    agnostic_mode=False)
+
+        ret, jpeg = cv2.imencode('.jpg', image_np_with_detections)
+        return jpeg.tobytes()
+
+    def update(self):
+        while True:
+            cap = self.video
+            (self.grabbed, self.frame) = cap.read()
+            ret, frame = cap.read()
+            image_np = np.array(frame)
+            
+            input_tensor = tf.convert_to_tensor(np.expand_dims(image_np, 0), dtype=tf.float32)
+            detections = detect_fn(input_tensor)
+            
+            num_detections = int(detections.pop('num_detections'))
+            detections = {key: value[0, :num_detections].numpy()
+                        for key, value in detections.items()}
+            detections['num_detections'] = num_detections
+
+            # detection_classes should be ints.
+            detections['detection_classes'] = detections['detection_classes'].astype(np.int64)
+
+            label_id_offset = 1
+            image_np_with_detections = image_np.copy()
+
+            viz_utils.visualize_boxes_and_labels_on_image_array(
+                        image_np_with_detections,
+                        detections['detection_boxes'],
+                        detections['detection_classes']+label_id_offset,
+                        detections['detection_scores'],
+                        category_index,
+                        use_normalized_coordinates=True,
+                        max_boxes_to_draw=5,
+                        min_score_thresh=0.35,
+                        agnostic_mode=False)
+
+            # cv2.imshow('object detection',  cv2.resize(image_np_with_detections, (800, 600)))
+            
+
+
+
+def gen(camera):
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+        
