@@ -12,7 +12,7 @@ from urllib.parse import quote_plus, urlencode
 from twilio.rest import Client
 from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required 
-
+from . models import User
 ###############################################################################################
 
 # Auth0 Section
@@ -100,3 +100,7 @@ def temp(request):
 
 def show(request):
     return render(request, 'show.html')
+
+def profile(request):
+    image = request.user.profile_image
+    return render(request, 'profile.html', {'profile_image': image})

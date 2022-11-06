@@ -24,13 +24,14 @@ class BikeModel(models.Model):
 
 class User(AbstractUser):
     
-    profile_image = models.ImageField(upload_to='onlyBikesApp/userprofile')
+    profile_image = models.ImageField()
     bio = models.CharField(max_length=1000)
-    bikes = models.ManyToManyField(BikeModel)
+    bikes = models.ManyToManyField(BikeModel, blank=True)
     phone_number = models.CharField(max_length=10)
+    REQUIRED_FIELDS = ['email', 'password']
     pass
     
-    
+
     
 
 
