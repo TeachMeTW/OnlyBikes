@@ -1,0 +1,19 @@
+<h1>Bikes</h1>
+
+<table border="1">
+
+{% for x in bikes %}
+<tr>
+<td>{{ x.brand }}</td>
+<td>{{ x.model }}</td>
+<td>{{ x.price }}</td>
+<td>{{ x.condition }}</td>
+<td>{{ x.location }}</td>
+<td>{{ x.description }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<p>
+<a href="add/">Add Bike</a>
+</p>
